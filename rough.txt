@@ -1,0 +1,12 @@
+register: function () {
+        axios.post('http://127.0.0.1:8000/api/v1/register/',
+          {username: this.username,
+            password: this.password
+          })
+          .then(function (response) {
+            console.log(response.data)
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
