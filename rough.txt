@@ -10,3 +10,79 @@ register: function () {
             console.log(error)
           })
       }
+
+
+
+      <v-layout column>
+    <v-flex xs6 offset-xs3>
+      <div class="white elevation-2">
+        <v-toolbar flat dense class="purple" dark>
+          <v-toolbar-title color="white">Register</v-toolbar-title>
+        </v-toolbar>
+        <h1 style="font-family: Roboto">Register</h1>
+    <input type="text" v-model="username" placeholder="Username" />
+    <input type="email" v-model="email" placeholder="Email" />
+    <input type="password" v-model="password" placeholder="Password"/>
+    <input type="password" v-model="password2" placeholder="Confirm Password" required/>
+    <button @click="register">Register</button>
+    <p style="color: crimson" v-if="err" v-for="e in err">{{ e[0] }}</p>
+    <p style="color: greenyellow" v-if="msg" >{{ msg }}</p>
+      </div>
+
+    </v-flex>
+    </v-layout>
+
+
+
+  <div>
+    <h1>Login</h1>
+
+    <input type="text" name="username" placeholder="Username" v-model="username">
+    <input type="password" name="password" placeholder="Password" v-model="password">
+    <button @click="login">Login</button>
+    <p style="color: greenyellow" v-if="msg">{{ msg }}</p>
+    <p style="color: crimson" v-if="err" v-for="e in err">{{ e[0] }}</p>
+  </div>
+
+
+  		if users:
+			serialize = UserSerializer(users, many=True)
+			return Response(serialize.data, status=status.HTTP_200_OK)
+		return Response({"message": "An error occured trying to fetch the songs"}, status=status.HTTP_404_NOT_FOUND)
+
+
+
+
+
+watch: {
+      '$route.query.search': {
+        immediate: true,
+       async handler (value) {
+          this.songs = await Songs.index(value)
+        }
+      }
+    }
+
+
+
+
+
+  ,
+      '$route.query.search': {
+        immediate: true,
+        handler (value) {
+          console.log(value)
+          this.search = value
+        }
+      }
+
+
+      try {
+          const response = await
+          Songs.index(this.search)
+          this.songs = response.data
+          this.$store.dispatch('setSongs', response.data)
+          console.log(this.songs[0])
+        } catch (e) {
+
+        }
